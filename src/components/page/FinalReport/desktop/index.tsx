@@ -39,17 +39,14 @@ function FinalReportDesktop() {
     importFileToForm,
     setCurrentFile,
     submitFinalReport,
-    updateFinalReport,
     currentFile,
     fileName,
     valueLoading,
     totalSize,
   } = useUploadFile();
-
   const onClearFormFile = () => {
     setCurrentFile(undefined);
   };
-
   const onPreviewSubmit = () => {
     const fullUrl = `${env.API_URL}${finalReport?.link}`;
     window.open(fullUrl, '_blank');
@@ -76,7 +73,7 @@ function FinalReportDesktop() {
           >
             <Icon icon='noto:books' width={24} />
           </Box>{' '}
-          Nộp báo cáo kết thúc khóa luậ tốt nghiệp
+          Nộp báo cáo kết thúc khóa luận tốt nghiệp
         </Typography>
       </Box>
 
@@ -93,7 +90,8 @@ function FinalReportDesktop() {
           <TableRow>
             <TableCell sx={{ fontWeight: 'bold' }}>Định dạng file đính kèm</TableCell>
             <TableCell component={'i'} sx={{ color: 'error.main' }}>
-              PDF (Kích thước tối đa 10MB){'. Đây là file báo cáo cuối cùng và không thể chỉnh sửa và được lưu trữ lâu dài.'} 
+              PDF (Kích thước tối đa 10MB)
+              {'. Đây là file báo cáo cuối cùng và không thể chỉnh sửa và được lưu trữ lâu dài.'}
             </TableCell>
           </TableRow>
           <TableRow>

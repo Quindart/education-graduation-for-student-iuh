@@ -10,8 +10,6 @@ import { useNavigate } from 'react-router-dom';
 import useUserStore from '@/store/userStore';
 import useTermStore from '@/store/termStore';
 import { ENUM_STATUS_OF_DATE_TERM } from '@/utils/validations/term.validation';
-import CustomTextField from '@/components/ui/CustomTextField';
-import { group } from 'console';
 
 function MyGroupStudentDesktop() {
   const { HandleGetMyGroupStudent, OnSubmitReviewDocument } = useGroupStudent();

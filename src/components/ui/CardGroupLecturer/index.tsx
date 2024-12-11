@@ -39,9 +39,13 @@ function CardGroupLecturer(props: any) {
           Giảng viên chấm điểm
         </Typography>
         {group?.members.map((mem: any, index) => (
-          <Box mx={2} mb={2}>
-            <Typography variant='h6' color='grey.600'>
+          <Box mx={2} my={4}>
+            <Typography variant='h6' color='grey.800'>
               {mem.fullName}
+
+              <Typography variant='h6' mx={4} component={'i'} color='grey.600'>
+                {mem.comment ? mem.comment : 'Chưa có nhận xét'}
+              </Typography>
             </Typography>
           </Box>
         ))}
@@ -57,12 +61,7 @@ function CardGroupLecturer(props: any) {
             <Typography mb={2} display={'block'} fontWeight={'500'} color='primary.main'>
               Bắt đầu {dayjs(group?.startDate).format('DD/MM/YYYY hh:mm:ss A')}
             </Typography>
-            <Typography
-              mb={2}
-              display={'block'}
-              fontWeight={'500'}
-              color='primary.main'
-            >
+            <Typography mb={2} display={'block'} fontWeight={'500'} color='primary.main'>
               Kết thúc {dayjs(group?.endDate).format('DD/MM/YYYY hh:mm:ss A')}
             </Typography>
           </Box>
