@@ -1,4 +1,5 @@
 import Table from '@/components/ui/Table/Table';
+import { env } from '@/utils/env';
 import { getCardArticleStatus } from '@/utils/validations/article.validation';
 import { Box, Typography } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
@@ -29,6 +30,24 @@ function TableArticleManagement(props: any) {
         flex: 0.5,
         align: 'right',
         headerAlign: 'right',
+      },
+      {
+        headerName: 'Tải file',
+        field: 'link',
+        flex: 0.4,
+        align: 'center',
+        headerAlign: 'center',
+        renderCell: (params) => (
+          <Typography
+            component={'a'}
+            href={`${env.API_URL}/${params.value}`}
+            target='_blank'
+            variant='body1'
+            color='primary'
+          >
+            Xem chi tiết
+          </Typography>
+        ),
       },
       {
         headerName: 'Trạng thái',

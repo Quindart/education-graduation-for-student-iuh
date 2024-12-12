@@ -142,6 +142,7 @@ function SubmitModal({ open, onClose }: any) {
                         label='Ngày công bố'
                         onChange={(date) => setFieldValue('publicDate', date)}
                         name='publicDate'
+                        format='DD/MM/YYYY'
                       />
                     </Box>
                   </Box>

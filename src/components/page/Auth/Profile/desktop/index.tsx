@@ -5,7 +5,7 @@ import useAuth from '@/hook/api/useAuth';
 import useUserStore from '@/store/userStore';
 import { checkTypeTraining } from '@/utils/validations/person.validation';
 import { Icon } from '@iconify/react';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Paper } from '@mui/material';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -48,7 +48,7 @@ function ProfileDesktop() {
   };
   return (
     <>
-      <Box
+      <Paper
         sx={{
           borderRadius: 1,
           width: '100%',
@@ -56,6 +56,7 @@ function ProfileDesktop() {
           mt: 8,
           position: 'relative',
         }}
+        elevation={0}
       >
         <Box
           sx={{
@@ -186,7 +187,7 @@ function ProfileDesktop() {
             </Formik>
           </Box>
         </Box>
-      </Box>
+      </Paper>
     </>
   );
 }

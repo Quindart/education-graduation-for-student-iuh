@@ -148,6 +148,11 @@ export const APP_PROFILE_MENU = [
     link: '/update-password',
   },
   {
+    text: 'Thông tin cá nhân',
+    icon: 'mdi:account-circle',
+    link: '/profile',
+  },
+  {
     text: 'Đăng xuất',
     icon: 'ri:logout-box-r-line',
     link: '/auth/login',
