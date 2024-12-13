@@ -40,7 +40,7 @@ function TableArticleManagement(props: any) {
         renderCell: (params) => (
           <Typography
             component={'a'}
-            href={`${env.API_URL}/${params.value}`}
+            href={`${env.API_URL}${params.value}`}
             target='_blank'
             variant='body1'
             color='primary'
