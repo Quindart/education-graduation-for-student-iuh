@@ -142,9 +142,9 @@ function ScorePageDesktop() {
                     Điểm trung bình
                   </Typography>
                   <Typography color='error.dark' variant='body1' fontWeight={500} lineHeight={2}>
-                    {transcript?.totalAverageScore === 0
+                    {transcript?.totalAvgScore === 0
                       ? 'Chưa có điểm '
-                      : transcript?.totalAverageScore}
+                      : transcript?.totalAvgScore}
                   </Typography>
                 </Box>
               </Box>
