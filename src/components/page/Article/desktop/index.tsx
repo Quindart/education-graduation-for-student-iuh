@@ -1,4 +1,4 @@
- import { Box, Button, Paper } from '@mui/material';
+import { Box, Button, Paper } from '@mui/material';
 import useArticle from '@/hook/api/useArticle';
 import SekeletonUI from '@/components/ui/Sekeleton';
 import TitleManager from '@/components/ui/Title';

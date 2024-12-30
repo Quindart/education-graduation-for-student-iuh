@@ -142,7 +142,6 @@ function SubmitModal({ open, onClose }: any) {
                         label='Ngày công bố'
                         onChange={(date) => setFieldValue('publicDate', date)}
                         name='publicDate'
-                        format='DD/MM/YYYY'
                       />
                     </Box>
                   </Box>
@@ -175,13 +174,25 @@ function SubmitModal({ open, onClose }: any) {
                       />
                     )}{' '}
                     {currentFile && (
-                      <Button color='error' onClick={onClearFormFile}>
-                        Xóa file ?
+                      <Typography
+                        ml={4}
+                        mt={12}
+                        component={'span'}
+                        variant='body1'
+                        color='grey.600'
+                      >
+                        Đã có 1 file được tải lên. Vui lòng "Submit bài báo" để lưu thay đổi. Hoặc{' '}
+                      </Typography>
+                    )}
+                    {currentFile && (
+                      <Button
+                        sx={{ display: 'inline-block' }}
+                        color='error'
+                        onClick={onClearFormFile}
+                      >
+                        Xóa file tải lên ?
                       </Button>
                     )}
-                    <Typography variant='body1' mt={4} color=''>
-                      Tên file đúng định dạng VD: NHOM_120_NGUYEN_HUY_HOANG_LE_MINH_QUANG_BBKH
-                    </Typography>
                   </Box>
                   <Box width={'100%'}>
                     <Button
@@ -218,10 +229,6 @@ function SubmitModal({ open, onClose }: any) {
               }}
             >
               Lưu ý*:
-            </Typography>
-            <Typography variant='body2' color='error.dark' sx={{ mb: 1 }}>
-              - Sau khi nộp bài, bạn không thể chỉnh sửa hoặc xóa bài báo. Vui lòng kiểm tra kỹ
-              trước khi nộp.
             </Typography>
             <Typography variant='body2' color='text.primary' sx={{ mb: 1 }}>
               - Bài báo phải thuộc lĩnh vực khoa công nghệ thông tin. Nếu không, bài báo sẽ không

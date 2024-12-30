@@ -34,19 +34,22 @@ const VisuallyHiddenInput = styled('input')({
 
 function FinalReportDesktop() {
   const { HandleGetFinalReport } = useFinalReport();
-  const { finalReport, isLoading, isFetching } = HandleGetFinalReport();
+  const { finalReport } = HandleGetFinalReport();
   const {
     importFileToForm,
     setCurrentFile,
     submitFinalReport,
+    updateFinalReport,
     currentFile,
     fileName,
     valueLoading,
     totalSize,
   } = useUploadFile();
+
   const onClearFormFile = () => {
     setCurrentFile(undefined);
   };
+
   const onPreviewSubmit = () => {
     const fullUrl = `${env.API_URL}${finalReport?.link}`;
     window.open(fullUrl, '_blank');
@@ -217,10 +220,14 @@ function FinalReportDesktop() {
           color={finalReport?.link ? 'warning' : 'primary'}
           variant='contained'
           disabled={currentFile === undefined}
-          onClick={() => submitFinalReport(currentFile)}
+          onClick={() =>
+            finalReport?.link && finalReport?.id
+              ? updateFinalReport(currentFile, finalReport.id)
+              : submitFinalReport(currentFile)
+          }
           startIcon={<Icon icon='mingcute:save-line' />}
         >
-          Submit báo cáo
+          {finalReport?.link && finalReport?.id ? 'Cập nhật báo cáo' : 'Submit báo cáo'}
         </Button>
       </Box>
     </Paper>
