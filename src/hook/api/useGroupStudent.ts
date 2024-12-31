@@ -26,7 +26,8 @@ function useGroupStudent() {
             queryKey: [QueryKeysGroupStudent.getCurrentGroupStudentTerm, currentTermId],
             queryFn: () => groupStudentService.getListGroup(`${currentTermId}`),
             staleTime: 20 * (60 * 1000),
-            refetchOnMount: true
+            refetchOnMount: true,
+            enabled: !!currentTermId
         })
     }
 
@@ -125,6 +126,7 @@ function useGroupStudent() {
             queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId],
             queryFn: () => groupStudentService.getMyGroup(`${currentTermId}`),
             staleTime: 5 * (60 * 1000),
+            
             select(data) {
                 setMyGroupId(data.group.info.id)
                 setMyGroupDetail(data.group.info)
@@ -139,6 +141,7 @@ function useGroupStudent() {
         return useQuery({
             queryKey: [QueryKeysGroupStudent.getGroupMembers, groupId],
             queryFn: () => groupStudentService.getGroupMembers(groupId),
+            enabled: !!groupId
         })
     }
 

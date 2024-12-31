@@ -50,7 +50,7 @@ function CardGroupStudent({ numOfMembers, name, groupId }: any) {
             '&:hover': {
               bgcolor: '#fff5ec',
               boxShadow:
-                'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;',
+                'rgba(50, 50, 93, 0.25) 0px 4px 10px -2px, rgba(0, 0, 0, 0.3) 0px 20px 20px -10px;',
               border: '1px solid #f3ad5e',
             },
           }}
@@ -67,12 +67,12 @@ function CardGroupStudent({ numOfMembers, name, groupId }: any) {
               <>
                 <Typography
                   gutterBottom
-                  variant='h4'
+                  variant='h6'
                   color='warning.dark'
                   fontWeight={'bold'}
                   component='div'
                 >
-                  {name}
+                Nhóm  {name}
                 </Typography>
                 <Typography variant='body1' color='text.warning'>
                   Số lượng thành viên :{numOfMembers} /2

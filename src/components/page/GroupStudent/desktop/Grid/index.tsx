@@ -8,7 +8,7 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 function GridGroupStudent({ groupStudents }: any) {
   const { partOfTerm } = useTermStore();
   return (
-    <Box display={'flex'} gap={4} flexWrap='wrap' width={'100%'}>
+    <Box display={'flex'} gap={4} mt={20} flexWrap='wrap' width={'100%'}>
       {partOfTerm.ChooseGroup?.status === ENUM_STATUS_OF_DATE_TERM.EXPIRED ? (
         <Box
           height={500}
@@ -69,8 +69,8 @@ function GridGroupStudent({ groupStudents }: any) {
             </>
           ) : (
             <>
-              {groupStudents?.map((gr: any) => (
-                <CardGroupStudent numOfMembers={gr.numOfMembers} name={gr.name} groupId={gr.id} />
+              {groupStudents?.map((gr: any,key:number) => (
+                <CardGroupStudent key={key} numOfMembers={gr.numOfMembers} name={gr.name} groupId={gr.id} />
               ))}{' '}
             </>
           )}

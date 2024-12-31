@@ -34,6 +34,7 @@ function useTopic() {
             queryKey: [QueryKeysTopic.getTopicById, topicId],
             queryFn: () => topicService.getTopicId(`${topicId}`),
             staleTime: 1000 * (120 * 60),
+            enabled: !!topicId
         })
     }
 
@@ -44,6 +45,7 @@ function useTopic() {
             select(data: any) {
                 return data?.keywords;
             },
+            enabled: !!currentTermId,
             staleTime: 1000 * (20 * 60),
         })
         return {
@@ -76,7 +78,6 @@ function useTopic() {
             queryFn: () => topicService.getTopicId(`${myTopicId}`),
             enabled: !!myTopicId,
             staleTime: 1000 * (20 * 60),
-
         })
     }
 

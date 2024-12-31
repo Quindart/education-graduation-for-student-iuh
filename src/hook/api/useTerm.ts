@@ -17,6 +17,7 @@ function useTerm() {
             queryKey: [QueryKeysTerm.getCurrentTerm, majorId],
             queryFn: () => termService.getTermNow(majorId),
             staleTime: 5000,
+            enabled: !!majorId,
             select(data) {
                 setCurrentTerm(data.term);
                 setPartOfTerm(checkListPartOfTerm(data.term))

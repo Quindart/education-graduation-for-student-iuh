@@ -21,6 +21,7 @@ function useNotification() {
             select(data: any) {
                 return data.notification;
             },
+            enabled: !!id,
             staleTime: 60 * 60 * 1000,
         });
     }

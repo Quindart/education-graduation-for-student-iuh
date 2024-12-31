@@ -12,6 +12,7 @@ function useEvaluation() {
             queryKey: [QueryKeysEvaluation.getAllEvaluationByType, type],
             queryFn: () => evaluationService.getAllReviewByType(term.id, type),
             staleTime: 1000 * (60 * 20),
+            enabled:!!type,
             select(data) {
                 return data.evaluations
             }
