@@ -9,7 +9,7 @@ class TermService {
         this.endpoint = endpoint ? endpoint : '/terms';
     }
     async getTermNow(majorId: string): Promise<Pick<ResponseType, 'success' | 'term' | 'message'>> {
-        return await axiosConfig.get(`${this.endpoint}/now?majorId=${majorId}`);
+        return await axiosConfig.get(`${this.endpoint}/student`);
     }
 }
 
