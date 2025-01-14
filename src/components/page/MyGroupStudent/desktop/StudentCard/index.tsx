@@ -74,20 +74,20 @@ function StudentCard({
             >
               Thành viên {index}: {name}
             </Typography>
-            <Box sx={{ display: 'flex', gap: 10, width: '100%' }}>
+            <Box sx={{ display: 'flex', width: '100%', gap: 10 }}>
               <Box>
-                <Typography sx={{ fontSize: 16, marginBottom: 1 }}>
-                  Mã số sinh viên: {mssv}
+                <Typography variant='h5' component='p'>
+                  MSSV: {mssv}
                 </Typography>
-                <Typography variant='h6' component='p'>
+                <Typography variant='h5' component='p'>
                   Email liên hệ: {email ? email : 'Đang cập nhật'}
                 </Typography>
               </Box>
               <Box>
-                <Typography variant='h6' component='p'>
+                <Typography variant='h5' component='p'>
                   Số điện thoại: {phone ? phone : 'Đang cập nhật'}
                 </Typography>
-                <Typography variant='h6' component='p'>
+                <Typography variant='h5' component='p'>
                   Giới tính: {checkGender(gender)}
                 </Typography>
               </Box>
@@ -103,8 +103,7 @@ function StudentCard({
                 variant='contained'
                 color='success'
               >
-                <Icon icon='clarity:assign-user-solid' />
-                Chọn làm trưởng nhóm
+                <Icon icon='clarity:assign-user-solid' /> Chọn trưởng nhóm
               </Button>
               <Button
                 onClick={() => handleOpenRemoveMember()}

@@ -94,7 +94,7 @@ function EventDetailDesktop() {
         <TableBody>
           <TableRow>
             <TableCell sx={{ fontWeight: 'bold' }}>Định dạng file đính kèm</TableCell>
-            <TableCell>Zip hoặc pdf </TableCell>
+            <TableCell>Pdf</TableCell>
           </TableRow>
           <TableRow>
             <TableCell sx={{ fontWeight: 'bold' }}>Ngày bắt đầu</TableCell>

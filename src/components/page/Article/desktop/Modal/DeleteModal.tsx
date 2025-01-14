@@ -31,7 +31,7 @@ function DeleteModal(props) {
           <Icon color='#9B0F0FD4' height={70} width={70} icon='ph:article-ny-times' />
         </Box>
         <Typography variant='h6' textAlign={'center'} mt={10} mb={14}>
-          Bạn có chắc chắn xóa bài báo {name} ?
+          Bạn có chắc chắn muốn xóa bài báo {name} này không ?
         </Typography>
         <Box width='100%' display='flex' gap={6} marginTop={1}>
           <Button onClick={onClose} sx={{ width: '50%' }} color='primary' variant='contained'>

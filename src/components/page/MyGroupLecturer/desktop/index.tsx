@@ -91,29 +91,12 @@ function MyGroupLecturerDesktop() {
                         <Box sx={{ flex: 1 }}>
                           <CustomTextField
                             size='medium'
-                            label='Nộp link báo cáo phản biện'
+                            label='Nộp link tài liệu tại đây'
                             value={link}
                             defaultValue={data.group?.info?.link}
                             onChange={(e) => setLink(e.target.value)}
-                            placeholder='Nhập link báo cáo phản biện'
+                            placeholder='Nhập link tài liệu báo cáo'
                           />
-                          <Typography variant='body1' color='error.dark'>
-                            Lưu ý*: Link google drive phải được bật chế độ{' '}
-                            <span style={{ color: 'red', fontWeight: 'bold' }}>
-                              "chia sẻ công khai"
-                            </span>{' '}
-                            Mỗi nhóm nộp link google drive báo cáo phản biện. Nội dung file bao gồm:
-                            <i>
-                              file txt chứa source code, video clip giới thiệu hệ thống (5 -10
-                              phút), file báo cáo word, powerpoint giới thiệu hệ thống, thời gian
-                              nộp được thông báo khi giảng viên quản lý khóa luận thông báo.
-                            </i>
-                            <span style={{ color: 'red', fontWeight: 'bold' }}>
-                              {' '}
-                              Hội đồng phản biện sử dụng các nội dung trong link này để đánh giá và
-                              chấm điểm.
-                            </span>
-                          </Typography>
                         </Box>
                         <Button
                           onClick={() => handleSubmitLink(data.group.info.id)}
@@ -122,12 +105,29 @@ function MyGroupLecturerDesktop() {
                           color='success'
                           variant='contained'
                         >
-                          Nộp bài
+                          Nộp tài liệu
                         </Button>
                       </Box>
                     </Box>
                   </Box>
                 </Box>
+                <Typography variant='h6' color='error.dark'>
+                  <span style={{ color: 'red', fontWeight: 'bold' }}>LƯU Ý:</span> Link tài liệu
+                  google drive phải được bật chế độ{' '}
+                  <span style={{ color: 'red', fontWeight: 'bold' }}>"CHIA SẺ CÔNG KHAI"</span>
+                  {'. '}
+                  Mỗi nhóm cần nộp link tài liệu trước thời gian báo cáo khoảng 1 ngày. Nội dung bao
+                  gồm:
+                  <i>
+                    1. File chứa link source code; 2. Video clip giới thiệu hệ thống (khoảng 5 -10
+                    phút); 3. File tài liệu khóa luận; 4. File powerpoint slides báo cáo.
+                  </i>
+                  <span style={{ color: 'red', fontWeight: 'bold' }}>
+                    {' '}
+                    Giảng viên có thể sẽ sử dụng các nội dung trong link này để đánh giá và chấm
+                    điểm.
+                  </span>
+                </Typography>
               </>
             )}
           </>

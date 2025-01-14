@@ -1,4 +1,4 @@
-import { Box, Button, Paper } from '@mui/material';
+import { Box, Button, Paper, Typography } from '@mui/material';
 import useArticle from '@/hook/api/useArticle';
 import SekeletonUI from '@/components/ui/Sekeleton';
 import TitleManager from '@/components/ui/Title';
@@ -31,7 +31,7 @@ function ArticleDesktop() {
             color='error'
             startIcon={<Icon icon='mingcute:add-fill' />}
           >
-            Thêm bài báo
+            <Typography variant='body1'>Nộp bài báo</Typography>
           </Button>
         </Box>
         {isLoading ? <SekeletonUI /> : <TableArticleManagement rows={articles ? articles : []} />}

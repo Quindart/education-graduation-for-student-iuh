@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Paper, Typography } from '@mui/material';
+import { Box, Button, InputLabel, Paper, Typography } from '@mui/material';
 import { Formik } from 'formik';
 import Calendar from '@/components/ui/Calendar';
 import CustomTextField from '@/components/ui/CustomTextField';
@@ -47,9 +47,9 @@ function UpdateArticleModal({ open, onClose, articleId }: any) {
     };
 
     if (!currentFile) enqueueSnackbar({ message: 'Bạn chưa tải file lên', variant: 'error' });
-
     await updateArticle(currentFile, article.id, data);
   };
+
   const onClearFormFile = () => {
     setCurrentFile(undefined);
   };
@@ -57,7 +57,7 @@ function UpdateArticleModal({ open, onClose, articleId }: any) {
   return (
     <Modal maxWidth='md' open={open} onClose={onClose}>
       <Paper sx={{ px: 10, py: 12 }} elevation={0}>
-        <Box mb={10}>
+        <Box>
           <Typography
             mb={10}
             variant='h6'
@@ -65,7 +65,7 @@ function UpdateArticleModal({ open, onClose, articleId }: any) {
             fontWeight='bold'
             color='primary.main'
           >
-            Submit bài báo khoa học
+            Cập nhật bài báo khoa học
           </Typography>
           {isLoading ? (
             <Box>
@@ -88,67 +88,76 @@ function UpdateArticleModal({ open, onClose, articleId }: any) {
                 <form onSubmit={handleSubmit}>
                   <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
                     <Box width={'100%'}>
+                      <Box>
+                        <CustomTextField
+                          label='Tên bài báo'
+                          placeholder='VD: Hệ thống quản lý...'
+                          name='name'
+                          value={values.name}
+                          onChange={handleChange}
+                          fullWidth
+                          error={touched.name && Boolean(errors.name)}
+                          helperText={touched.name && errors.name}
+                          required
+                        />
+                      </Box>
                       <CustomTextField
-                        label='Tên bài báo'
-                        placeholder='Vd: Nghiên cứu...'
-                        name='name'
-                        value={values.name}
-                        onChange={handleChange}
-                        fullWidth
-                        error={touched.name && Boolean(errors.name)}
-                        helperText={touched.name && errors.name}
-                      />
-                      <CustomTextField
-                        label='Tên tác giả chính'
-                        placeholder='Vd: Lê Minh Quang, Nguyễn Huy Hoàng'
+                        label='Tên các tác giả chính'
+                        placeholder='VD: Lê Minh Quang, Nguyễn Huy Hoàng'
                         name='author'
                         value={values.author}
                         onChange={handleChange}
                         fullWidth
                         error={touched.author && Boolean(errors.author)}
                         helperText={touched.author && errors.author}
+                        required
+                      />
+                    </Box>
+                    <Box width={'100%'}>
+                      <CustomTextField
+                        label='Loại bài báo'
+                        placeholder='VD: Bài báo khoa học trẻ'
+                        name='type'
+                        value={values.type}
+                        onChange={handleChange}
+                        fullWidth
+                        error={touched.type && Boolean(errors.type)}
+                        helperText={touched.type && errors.type}
+                        required
                       />
                     </Box>
                     <Box display='flex' width='100%' gap={4}>
                       <Box mt={1} flex={1}>
-                        <Typography variant='h6' fontWeight='bold' color='grey.700'>
-                          Số Tác giả:
-                        </Typography>
                         <CustomTextField
+                          label='Số tác giả'
                           type='number'
-                          sx={{ mt: 2 }}
-                          placeholder='Số tác giả viết bài'
+                          placeholder='Số tác giả'
                           name='authorNumber'
                           value={values.authorNumber}
                           onChange={handleChange}
                           fullWidth
                           error={touched.authorNumber && Boolean(errors.authorNumber)}
                           helperText={touched.authorNumber && errors.authorNumber}
+                          required
                         />
                       </Box>
                       <Box flex={1}>
-                        <CustomTextField
-                          label='Loại báo'
-                          placeholder='Vd: báo khoa học'
-                          name='type'
-                          value={values.type}
-                          onChange={handleChange}
-                          fullWidth
-                          error={touched.type && Boolean(errors.type)}
-                          helperText={touched.type && errors.type}
-                        />{' '}
-                      </Box>
-                      <Box>
+                        <InputLabel
+                          htmlFor='publicDate'
+                          sx={{ mb: 4, color: 'grey.900', fontSize: 14, fontWeight: 600 }}
+                        >
+                          Ngày công bố<span style={{ color: 'red', marginLeft: 2 }}>*</span>
+                        </InputLabel>
                         <Calendar
-                          label='Ngày công bố'
                           onChange={(date) => setFieldValue('publicDate', date)}
                           name='publicDate'
                           format='DD/MM/YYYY'
                           defaultValue={values.publicDate}
+                          id='publicDate'
                         />
                       </Box>
                     </Box>
-                    <Box my={2} width={'100%'}>
+                    <Box my={1} width={'100%'}>
                       {!currentFile ? (
                         <Typography>
                           <Button
@@ -159,16 +168,12 @@ function UpdateArticleModal({ open, onClose, articleId }: any) {
                               justifyContent: 'center',
                               position: 'relative',
                               py: 10,
-                              height: 100,
                               fontSize: 14,
                               border: '0.5px solid #bdbdbd',
-                              textAlign: 'center',
                             }}
                             component='label'
                           >
-                            Tên file đúng định dạng PDF
-                            <br />
-                            Bạn chưa tải lên file cập nhật . Nhấn để tải file
+                            Tải file lên (.PDF) kích thước tối đa 10MB
                             <VisuallyHiddenInput
                               type='file'
                               onChange={(e) => importFileToForm(e)}
@@ -181,7 +186,7 @@ function UpdateArticleModal({ open, onClose, articleId }: any) {
                           totalSize={totalSize}
                           valueLoading={valueLoading}
                         />
-                      )}{' '}
+                      )}
                       {currentFile && (
                         <Typography
                           ml={4}
@@ -190,7 +195,7 @@ function UpdateArticleModal({ open, onClose, articleId }: any) {
                           variant='body1'
                           color='grey.600'
                         >
-                          Đã có 1 file được tải lên. Vui lòng "Submit bài báo" để lưu thay đổi. Hoặc{' '}
+                          Đã có 1 file được tải lên. Vui lòng nhấn "Cập nhật" để lưu thay đổi. Hoặc
                         </Typography>
                       )}
                       {currentFile && (
@@ -215,7 +220,7 @@ function UpdateArticleModal({ open, onClose, articleId }: any) {
                       }}
                     >
                       <Typography
-                        variant='body1'
+                        variant='h6'
                         color='error'
                         fontWeight='bold'
                         sx={{
@@ -223,21 +228,21 @@ function UpdateArticleModal({ open, onClose, articleId }: any) {
                           textDecoration: 'underline',
                         }}
                       >
-                        Lưu ý*:
+                        Lưu ý:
                       </Typography>
-                      <Typography variant='body2' color='text.primary' sx={{ mb: 1 }}>
-                        - Bài báo phải thuộc lĩnh vực khoa công nghệ thông tin. Nếu không, bài báo
+                      <Typography variant='h6' color='text.primary' sx={{ mb: 1 }}>
+                        - Bài báo phải thuộc lĩnh vực khoa Công nghệ thông tin. Nếu không, bài báo
                         sẽ không được tính điểm.
                       </Typography>
                     </Box>
                     <Box width={'100%'} mt={10}>
                       <Button
-                        sx={{ width: 150, fontSize: 14, float: 'right' }}
+                        sx={{ width: 100, fontSize: 14, float: 'right' }}
                         variant='contained'
                         color='success'
                         type='submit'
                       >
-                        Submit bài báo
+                        Cập nhật
                       </Button>
                     </Box>
                   </Box>

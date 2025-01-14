@@ -1,24 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import CardFile from '@/components/ui/CardFile';
+import useFinalReport from '@/hook/api/useFinalReport';
+import useUploadFile from '@/hook/ui/useUpload';
+import { env } from '@/utils/env';
+import styled from '@emotion/styled';
+import { Icon } from '@iconify/react';
 import {
   Box,
   Button,
   Paper,
-  Typography,
   Table,
   TableBody,
   TableCell,
   TableRow,
   Tooltip,
+  Typography,
 } from '@mui/material';
-import { Icon } from '@iconify/react';
 import dayjs from 'dayjs';
-import CardFile from '@/components/ui/CardFile';
-import useUploadFile from '@/hook/ui/useUpload';
-import styled from '@emotion/styled';
-import { useParams } from 'react-router-dom';
-import { env } from '@/utils/env';
-import useFinalReport from '@/hook/api/useFinalReport';
-import { link } from 'fs';
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -50,6 +47,16 @@ function FinalReportDesktop() {
     setCurrentFile(undefined);
   };
 
+  const handleSubmit = () => {
+    submitFinalReport(currentFile);
+    onClearFormFile();
+  };
+
+  const handleUpdate = () => {
+    updateFinalReport(currentFile, finalReport.id);
+    onClearFormFile();
+  };
+
   const onPreviewSubmit = () => {
     const fullUrl = `${env.API_URL}${finalReport?.link}`;
     window.open(fullUrl, '_blank');
@@ -75,8 +82,9 @@ function FinalReportDesktop() {
             display='inline-flex'
           >
             <Icon icon='noto:books' width={24} />
-          </Box>{' '}
-          Nộp báo cáo kết thúc khóa luận tốt nghiệp
+          </Box>
+          Nộp tài liệu báo cáo trước khi kết thúc học phần khóa luận tốt nghiệp nhằm mục đích lưu
+          trữ kết quả đánh giá
         </Typography>
       </Box>
 
@@ -91,10 +99,11 @@ function FinalReportDesktop() {
       >
         <TableBody>
           <TableRow>
-            <TableCell sx={{ fontWeight: 'bold' }}>Định dạng file đính kèm</TableCell>
+            <TableCell width={300} sx={{ fontWeight: 'bold' }}>
+              Định dạng file đính kèm
+            </TableCell>
             <TableCell component={'i'} sx={{ color: 'error.main' }}>
               PDF (Kích thước tối đa 10MB)
-              {'. Đây là file báo cáo cuối cùng và không thể chỉnh sửa và được lưu trữ lâu dài.'}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -181,7 +190,6 @@ function FinalReportDesktop() {
                       justifyContent: 'center',
                       position: 'relative',
                       py: 10,
-                      height: 100,
                       border: '1px solid #ccc',
                     }}
                     disabled={dayjs() > dayjs(finalReport?.endDate)}
@@ -199,7 +207,6 @@ function FinalReportDesktop() {
           </TableRow>
         </TableBody>
       </Table>
-
       <Box
         sx={{
           display: 'flex',
@@ -213,21 +220,17 @@ function FinalReportDesktop() {
             padding: '10px 20px',
             textTransform: 'none',
             borderRadius: 2,
-            fontSize: '16px',
+            fontSize: '14px',
             width: 'fit-content',
             mx: 'auto',
           }}
           color={finalReport?.link ? 'warning' : 'primary'}
           variant='contained'
           disabled={currentFile === undefined}
-          onClick={() =>
-            finalReport?.link && finalReport?.id
-              ? updateFinalReport(currentFile, finalReport.id)
-              : submitFinalReport(currentFile)
-          }
+          onClick={() => (finalReport?.link && finalReport?.id ? handleUpdate() : handleSubmit())}
           startIcon={<Icon icon='mingcute:save-line' />}
         >
-          {finalReport?.link && finalReport?.id ? 'Cập nhật báo cáo' : 'Submit báo cáo'}
+          {finalReport?.link && finalReport?.id ? 'Cập nhật tài liệu' : 'Nộp tài liệu'}
         </Button>
       </Box>
     </Paper>
