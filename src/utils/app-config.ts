@@ -1,28 +1,27 @@
-
 export const APP_ROUTES = {
-  INDEX: "/",
+  INDEX: '/',
   DASHBOARD: '/',
   HOME: '/home',
   NOTIFICATION: {
-    MANAGEMENT: "/notifications",
-    DETAILS: "/notifications/detail/:id",
-    CREATE: "/notifications/create",
+    MANAGEMENT: '/notifications',
+    DETAILS: '/notifications/detail/:id',
+    CREATE: '/notifications/create',
   },
   SCORE_STUDENT: {
-    MANAGEMENT: "/scores"
+    MANAGEMENT: '/scores',
   },
   STUDENT: {
     MANAGEMENT: '/students',
   },
   GROUP_STUDENT: {
-    MANAGEMENT: "/group-students",
+    MANAGEMENT: '/group-students',
     DETAIL: '/group-students/detail',
     DETAIL_GROUP_LECTURER: '/group-students/detail-group-lecturer',
   },
   TOPIC: {
-    MANAGEMENT: "/topics",
-    DETAIL: "/topics/:topic_id",
-    STUDENT: '/topics/my-topic'
+    MANAGEMENT: '/topics',
+    DETAIL: '/topics/:topic_id',
+    STUDENT: '/topics/my-topic',
   },
   EVENT: {
     MANAGEMENT: '/events',
@@ -45,24 +44,24 @@ export const APP_ROUTES = {
     PROFILE: '/profile',
     LOGIN: '/auth/login',
     UPDATE_PASS: '/update-password',
-    FORGOT: '/auth/forgot-password'
+    FORGOT: '/auth/forgot-password',
   },
   FORGOT_PASSWORD: '/auth/forgot-password',
   SUCCESS_MESSAGE: '/auth/success',
   NOT_FOUND: '/404',
 };
 export interface ItemAppSiderbarType {
-  text: string,
-  icon: string,
-  link: string,
-  key: string,
+  text: string;
+  icon: string;
+  link: string;
+  key: string;
 }
 export interface AppSiderBarType {
-  text: string,
-  icon?: string,
-  link: string,
-  key: string,
-  children?: ItemAppSiderbarType[]
+  text: string;
+  icon?: string;
+  link: string;
+  key: string;
+  children?: ItemAppSiderbarType[];
 }
 export const APP_SIDEBAR = [
   {
@@ -78,7 +77,7 @@ export const APP_SIDEBAR = [
     key: APP_ROUTES.ARTICLE.MANAGEMENT,
   },
   {
-    text: 'Báo cáo cuối kì',
+    text: 'Tài liệu báo cáo',
     icon: 'file-icons:readthedocs',
     link: APP_ROUTES.FINAL_REPORT.MANAGEMENT,
     key: APP_ROUTES.FINAL_REPORT.MANAGEMENT,
@@ -120,7 +119,6 @@ export const APP_SIDEBAR = [
         text: 'Đề tài của tôi',
         link: APP_ROUTES.TOPIC.STUDENT,
         key: APP_ROUTES.TOPIC.STUDENT,
-
       },
     ],
   },
@@ -129,16 +127,14 @@ export const APP_SIDEBAR = [
     text: 'Tiêu chí đánh giá',
     link: APP_ROUTES.EVALUATION.MANAGEMENT,
     key: '/evaluations',
-
   },
 
   {
     icon: 'carbon:result-new',
     text: 'Bảng điểm của tôi',
     link: APP_ROUTES.SCORE_STUDENT.MANAGEMENT,
-    key: APP_ROUTES.SCORE_STUDENT.MANAGEMENT
+    key: APP_ROUTES.SCORE_STUDENT.MANAGEMENT,
   },
-
 ];
 
 export const APP_PROFILE_MENU = [
@@ -157,7 +153,6 @@ export const APP_PROFILE_MENU = [
     icon: 'ri:logout-box-r-line',
     link: '/auth/login',
   },
-
 ];
 
 export const renderType = {

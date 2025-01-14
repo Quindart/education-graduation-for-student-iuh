@@ -1,7 +1,6 @@
 import { checktTypeGroupLecturer } from '@/utils/validations/groupLecturer.validation';
-import { Card, CardContent, CardMedia, Typography, CardActions, Box } from '@mui/material';
+import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
 import dayjs from 'dayjs';
-import { useNavigate } from 'react-router-dom';
 
 function CardGroupLecturer(props: any) {
   const { group } = props;
@@ -38,12 +37,11 @@ function CardGroupLecturer(props: any) {
         <Typography variant='h6' fontWeight={'bold'} color=''>
           Giảng viên chấm điểm
         </Typography>
-        {group?.members.map((mem: any, index) => (
+        {group?.members.map((mem: any, index: number) => (
           <Box mx={2} my={4}>
             <Typography variant='h6' color='grey.800'>
-              {mem.fullName}
-
-              <Typography variant='h6' mx={4} component={'i'} color='grey.600'>
+              {mem.fullName} {' - '}
+              <Typography variant='h6' component={'i'} color='grey.600'>
                 {mem.comment ? mem.comment : 'Chưa có nhận xét'}
               </Typography>
             </Typography>
@@ -51,18 +49,37 @@ function CardGroupLecturer(props: any) {
         ))}
 
         <Box sx={{ mb: 4 }}>
-          <Typography variant='h6' fontWeight={'bold'} color=''>
+          <Typography variant='h6' fontWeight={'bold'}>
             Thông tin chi tiết
           </Typography>
           <Box mx={4}>
-            <Typography mb={2} display={'block'} fontWeight={'500'} color='primary.main'>
-              Địa điểm {group.location}
+            <Typography
+              mt={2}
+              mb={2}
+              display={'block'}
+              fontWeight={'500'}
+              color='primary.main'
+              fontSize={14}
+            >
+              Địa điểm - {group.location}
             </Typography>
-            <Typography mb={2} display={'block'} fontWeight={'500'} color='primary.main'>
-              Bắt đầu {dayjs(group?.startDate).format('DD/MM/YYYY hh:mm:ss A')}
+            <Typography
+              mb={2}
+              display={'block'}
+              fontWeight={'500'}
+              color='primary.main'
+              fontSize={14}
+            >
+              Thời gian bắt đầu - {dayjs(group?.startDate).format('DD/MM/YYYY hh:mm:ss A')}
             </Typography>
-            <Typography mb={2} display={'block'} fontWeight={'500'} color='primary.main'>
-              Kết thúc {dayjs(group?.endDate).format('DD/MM/YYYY hh:mm:ss A')}
+            <Typography
+              mb={2}
+              display={'block'}
+              fontWeight={'500'}
+              color='primary.main'
+              fontSize={14}
+            >
+              Thời gian kết thúc - {dayjs(group?.endDate).format('DD/MM/YYYY hh:mm:ss A')}
             </Typography>
           </Box>
         </Box>

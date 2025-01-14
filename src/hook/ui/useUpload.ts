@@ -45,7 +45,7 @@ const useUploadFile = () => {
       });
     }
     if (!getExention(file)) {
-      return enqueueSnackbar('File tải lên không đúng định dạng ZIP, PDF file', {
+      return enqueueSnackbar('File tải lên không đúng định dạng PDF', {
         variant: 'error',
       });
     }

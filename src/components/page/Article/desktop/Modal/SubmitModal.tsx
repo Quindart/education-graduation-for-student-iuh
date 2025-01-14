@@ -1,25 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import {
-  Box,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  Paper,
-  TextField,
-  Typography,
-} from '@mui/material';
-import { Formik } from 'formik';
-import useGroupStudentStore from '@/store/groupStudentStore';
 import Calendar from '@/components/ui/Calendar';
-import CustomTextField from '@/components/ui/CustomTextField';
-import validateSchemaArticle from '../context';
-import dayjs from 'dayjs';
-import Modal from '@/components/ui/Modal';
 import CardFile from '@/components/ui/CardFile';
+import CustomTextField from '@/components/ui/CustomTextField';
+import Modal from '@/components/ui/Modal';
 import useUploadFile from '@/hook/ui/useUpload';
 import styled from '@emotion/styled';
 import { Icon } from '@iconify/react';
-import { enqueueSnackbar } from 'notistack';
+import { Box, Button, InputLabel, Paper, Typography } from '@mui/material';
+import dayjs from 'dayjs';
+import { Formik } from 'formik';
+import validateSchemaArticle from '../context';
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -37,7 +26,6 @@ function SubmitModal({ open, onClose }: any) {
     submitArticle,
     currentFile,
     setCurrentFile,
-    loading,
     fileName,
     valueLoading,
     totalSize,
@@ -60,7 +48,7 @@ function SubmitModal({ open, onClose }: any) {
   return (
     <Modal maxWidth='md' open={open} onClose={onClose}>
       <Paper sx={{ px: 10, py: 12 }} elevation={0}>
-        <Box mb={10}>
+        <Box>
           <Typography
             mb={10}
             variant='h6'
@@ -68,7 +56,7 @@ function SubmitModal({ open, onClose }: any) {
             fontWeight='bold'
             color='primary.main'
           >
-            Submit bài báo khoa học
+            Nộp bài báo khoa học
           </Typography>
 
           <Formik
@@ -89,61 +77,70 @@ function SubmitModal({ open, onClose }: any) {
                   <Box width={'100%'}>
                     <CustomTextField
                       label='Tên bài báo'
-                      placeholder='Vd: Nghiên cứu...'
+                      placeholder='VD: Hệ thống quản lý ...'
                       name='name'
                       value={values.name}
                       onChange={handleChange}
                       fullWidth
                       error={touched.name && Boolean(errors.name)}
                       helperText={touched.name && errors.name}
+                      required
                     />
                     <CustomTextField
-                      label='Tên tác giả chính'
-                      placeholder='Vd: Lê Minh Quang, Nguyễn Huy Hoàng'
+                      label='Tên các tác giả chính'
+                      placeholder='VD: Lê Minh Quang, Nguyễn Huy Hoàng'
                       name='author'
                       value={values.author}
                       onChange={handleChange}
                       fullWidth
                       error={touched.author && Boolean(errors.author)}
                       helperText={touched.author && errors.author}
+                      required
+                    />
+                  </Box>
+                  <Box width={'100%'}>
+                    <CustomTextField
+                      label='Loại bài báo'
+                      placeholder='VD: Bài báo khoa học trẻ'
+                      name='type'
+                      value={values.type}
+                      onChange={handleChange}
+                      fullWidth
+                      error={touched.type && Boolean(errors.type)}
+                      helperText={touched.type && errors.type}
+                      required
                     />
                   </Box>
                   <Box display='flex' width='100%' gap={4}>
                     <Box mt={1} flex={1}>
-                      <Typography variant='h6' fontWeight='bold' color='grey.700'>
-                        Số Tác giả:
-                      </Typography>
                       <CustomTextField
+                        label='Số tác giả'
                         type='number'
-                        sx={{ mt: 2 }}
-                        placeholder='Số tác giả viết bài'
+                        placeholder='Số tác giả'
                         name='authorNumber'
                         value={values.authorNumber}
                         onChange={handleChange}
                         fullWidth
                         error={touched.authorNumber && Boolean(errors.authorNumber)}
                         helperText={touched.authorNumber && errors.authorNumber}
+                        required
                       />
                     </Box>
                     <Box flex={1}>
-                      <CustomTextField
-                        label='Loại báo'
-                        placeholder='Vd: báo khoa học'
-                        name='type'
-                        value={values.type}
-                        onChange={handleChange}
-                        fullWidth
-                        error={touched.type && Boolean(errors.type)}
-                        helperText={touched.type && errors.type}
-                      />{' '}
-                    </Box>
-                    <Box>
+                      <InputLabel
+                        htmlFor='publicDate'
+                        sx={{ mb: 4, color: 'grey.900', fontSize: 14, fontWeight: 600 }}
+                      >
+                        Ngày công bố<span style={{ color: 'red', marginLeft: 2 }}>*</span>
+                      </InputLabel>
                       <Calendar
-                        label='Ngày công bố'
                         onChange={(date) => setFieldValue('publicDate', date)}
                         name='publicDate'
+                        format='DD/MM/YYYY'
+                        id='publicDate'
                       />
                     </Box>
+                    <Box></Box>
                   </Box>
                   <Box my={2} width={'100%'}>
                     {!currentFile ? (
@@ -155,7 +152,6 @@ function SubmitModal({ open, onClose }: any) {
                             justifyContent: 'center',
                             position: 'relative',
                             py: 10,
-                            height: 100,
                             fontSize: 14,
                             border: '0.5px solid #bdbdbd',
                           }}
@@ -181,7 +177,7 @@ function SubmitModal({ open, onClose }: any) {
                         variant='body1'
                         color='grey.600'
                       >
-                        Đã có 1 file được tải lên. Vui lòng "Submit bài báo" để lưu thay đổi. Hoặc{' '}
+                        Đã có 1 file được tải lên. Vui lòng nhấn "Nộp bài" để lưu thay đổi. Hoặc
                       </Typography>
                     )}
                     {currentFile && (
@@ -194,47 +190,48 @@ function SubmitModal({ open, onClose }: any) {
                       </Button>
                     )}
                   </Box>
+                  <Box
+                    sx={{
+                      backgroundColor: 'grey.100',
+                      borderRadius: 2,
+                      padding: 3,
+                      my: 10,
+                      px: 10,
+                      py: 6,
+                      width: '100%',
+                    }}
+                  >
+                    <Typography
+                      variant='h6'
+                      color='error'
+                      fontWeight='bold'
+                      sx={{
+                        mb: 2,
+                        textDecoration: 'underline',
+                      }}
+                    >
+                      Lưu ý:
+                    </Typography>
+                    <Typography variant='h6' color='text.primary' sx={{ mb: 1 }}>
+                      - Bài báo phải thuộc lĩnh vực khoa Công nghệ thông tin. Nếu không, bài báo sẽ
+                      không được tính điểm.
+                    </Typography>
+                  </Box>
                   <Box width={'100%'}>
                     <Button
                       size='large'
-                      sx={{ width: 150, fontSize: 14, float: 'right' }}
+                      sx={{ width: 100, fontSize: 14, float: 'right' }}
                       variant='contained'
                       color='success'
                       type='submit'
                     >
-                      Submit bài báo
+                      Nộp bài
                     </Button>
                   </Box>
                 </Box>
               </form>
             )}
           </Formik>
-          <Box
-            sx={{
-              backgroundColor: 'grey.100',
-              borderRadius: 2,
-              padding: 3,
-              mt: 10,
-              px: 10,
-              py: 6,
-            }}
-          >
-            <Typography
-              variant='body1'
-              color='error'
-              fontWeight='bold'
-              sx={{
-                mb: 2,
-                textDecoration: 'underline',
-              }}
-            >
-              Lưu ý*:
-            </Typography>
-            <Typography variant='body2' color='text.primary' sx={{ mb: 1 }}>
-              - Bài báo phải thuộc lĩnh vực khoa công nghệ thông tin. Nếu không, bài báo sẽ không
-              được tính điểm.
-            </Typography>
-          </Box>
         </Box>
       </Paper>
     </Modal>

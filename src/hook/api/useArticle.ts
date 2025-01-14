@@ -78,7 +78,7 @@ const useArticle = () => {
         link: string;
       }) => articleService.updateArticleById(id, { ...data }),
       onError: (error) => {
-        enqueueSnackbar('Thao tác thất bại, thử lại', { variant: 'error' });
+        enqueueSnackbar(error?.message || 'Thao tác thất bại, thử lại', { variant: 'error' });
       },
       onSuccess: () => {
         enqueueSnackbar('Cập nhật bài báo thành công', { variant: 'success' });

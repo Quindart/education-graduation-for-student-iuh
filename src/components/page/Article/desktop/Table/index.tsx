@@ -40,7 +40,7 @@ function TableArticleManagement(props: any) {
         flex: 1.4,
       },
       {
-        headerName: 'Ngày đăng bài',
+        headerName: 'Ngày công bố',
         field: 'publicDate',
         flex: 0.4,
         headerAlign: 'right',
@@ -48,7 +48,7 @@ function TableArticleManagement(props: any) {
         renderCell: (params) => <Typography>{dayjs(params.value).format('DD/MM/YYYY')}</Typography>,
       },
       {
-        headerName: 'Tải file',
+        headerName: 'Minh chứng',
         field: 'link',
         flex: 0.4,
         align: 'center',
